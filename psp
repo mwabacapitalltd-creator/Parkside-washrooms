@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b3d4a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Parkside Washrooms</title>
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <style>
+    :root {
+      --navy: #0b3d4a;
+      --navy-2: #125566;
+      --ink: #102227;
+      --paper: #f3f1ea;
+      --card: #fffcf6;
+      --line: #d5d0c4;
+      --g: #1b7a3d;
+      --y: #c98900;
+      --r: #c0362c;
+      --ok: #1b7a3d;
+      --muted: #5d6a6e;
+      --safe: env(safe-area-inset-bottom);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.4 "Segoe UI", system-ui, sans-serif; }
+    body { min-height: 100dvh; }
+    header {
+      background: var(--navy); color: #f6f3ea;
+      padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+      position: sticky; top: 0; z-index: 8;
+    }
+    header h1 { margin: 0; font-size: 1.05rem; letter-spacing: .04em; }
+    header p { margin: 2px 0 0; font-size: .78rem; opacity: .8; }
+    nav.tabs {
+      display: flex; gap: 6px; padding: 10px 12px 0;
+      background: var(--navy);
+    }
+    nav.tabs button {
+      flex: 1; border: 0; background: transparent; color: #c9ddd9;
+      padding: 10px 6px; border-radius: 10px 10px 0 0; font-weight: 700; font-size: .85rem;
+    }
+    nav.tabs button.on { background: var(--paper); color: var(--navy); }
+    main { max-width: 760px; margin: 0 auto; padding: 14px 14px calc(28px + var(--safe)); }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
+    h2 { margin: 0 0 8px; font-size: 1.05rem; }
+    label.field { display: block; font-size: .78rem; color: var(--muted); margin: 8px 0 4px; font-weight: 650; }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px;
+      font: inherit; background: #fff; color: inherit;
+    }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button.primary, button.ghost, button.warn {
+      border: 0; border-radius: 999px; padding: 12px 16px; font-weight: 750; cursor: pointer; font-size: .95rem;
+    }
+    button.primary { background: var(--navy); color: #fff; width: 100%; margin-top: 10px; }
+    button.ghost { background: #e7e2d4; color: var(--ink); }
+    button.warn { background: #f3d4d0; color: #7a1c14; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .task { border-top: 1px solid var(--line); padding: 12px 0; }
+    .task:first-child { border-top: 0; padding-top: 0; }
+    .cat { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--navy-2); font-weight: 800; margin: 16px 0 6px; }
+    .std { margin: 0 0 8px; font-weight: 650; }
+    .seg { display: flex; gap: 6px; }
+    .seg button {
+      flex: 1; border: 2px solid var(--line); background: #fff; border-radius: 12px;
+      padding: 10px 0; font-weight: 800; cursor: pointer;
+    }
+    .seg .G.on { background: #d9f0e0; border-color: var(--g); color: var(--g); }
+    .seg .Y.on { background: #f8ebc4; border-color: var(--y); color: #8a5f00; }
+    .seg .R.on { background: #f8d4d0; border-color: var(--r); color: var(--r); }
+    .seg .Yes.on { background: #d9f0e0; border-color: var(--g); color: var(--g); }
+    .seg .NA.on { background: #eceae3; border-color: #9aa3a6; color: #5d6a6e; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .72rem; font-weight: 800; }
+    .badge.G { background: #d9f0e0; color: var(--g); }
+    .badge.Y { background: #f8ebc4; color: #8a5f00; }
+    .badge.R { background: #f8d4d0; color: var(--r); }
+    .log { display: grid; gap: 4px; }
+    .log h3 { margin: 0; font-size: 1rem; }
+    .muted { color: var(--muted); font-size: .85rem; }
+    table.week { width: 100%; border-collapse
+... 
