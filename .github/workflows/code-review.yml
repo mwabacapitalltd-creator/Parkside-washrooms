@@ -11,6 +11,7 @@ permissions:
 jobs:
   review:
     name: Review
+    if: ${{ secrets.XAI_API_KEY != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: xAI Code Review
